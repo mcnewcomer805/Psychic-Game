@@ -6,20 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Psychic-Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
-    <script src="assets/javascript/word_guess_game.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
 </head>
 
 <body>
-  <h1>Psychic-Game</h1>
-  <h3>Guess what letter I am thinking of.</h3>
+  <h1>Rock Paper Scissors</h1>
 
   <div id="game">
     <p>You chose:  <span id = "userChoice"></span ></p>
     <p>The computer chose:  <span  id = "compChoice"></span ></p>
     <p>Wins: <span  id = "wins"></span ></p> 
     <p>Losses: <span  id = "losses"></span > </p>
-    <p>Guesses:  <span  id = "guesses"></span ></p>
+    <p>Ties:  <span  id = "ties"></span ></p>
   </div>
 
   <script type="text/javascript">
@@ -28,65 +27,51 @@
     var DoccompChoice = document.getElementById("compChoice");
     var Docwins = document.getElementById("wins");
     var Doclosses = document.getElementById("losses");
-    var Docguesses = document.getElementById("guesses");
+    var Docties = document.getElementById("ties");
 
 
-   // var ties = 0;
+    var ties = 0;
     var wins = 0;
     var losses = 0;
-    var guesses = 9;
-    var options = ["a", "b", "c"];
-    
+
+    var options = ["r", "s", "p"];
 
 
     document.onkeyup = function(event) {
       //alert(event.key);
-      var randcompChoice = options[Math.floor(Math.random() * (options.length ))];
+      var randcompChoice = options[Math.floor(Math.random() * (2 - 0 + 1)) + 0];
       var userChoice = event.key;
 
-      //if (options.indexOf(userChoice) === -1){
-      // alert("Pick a letter!");
-    // }
+      if (options.indexOf(userChoice) === -1){
+        alert("Pick r, s or p!!");
+      }
 
       console.log("Computer choice: " + randcompChoice);
       console.log("User choice: " + userChoice);
 
-        if (userChoice === randcompChoice) {  
-            //ties++;
-            wins++;
-            guesses = 9
-            alert("you won!");
-          }
- //       if (randcompChoice === "r"){
-  //      losses++;
-        //}
-        else if(guesses === 0){
-
-        //  wins++;
-        losses++;
-        guesses = 9;
-        alert("you loose");
+      if (userChoice === "s"){
+        if (randcompChoice === "s"){
+          ties++;
         }
-      // }
-      else if (userChoice !== randcompChoice){
-        guesses--
+        else if (randcompChoice === "r"){
+          losses++;
+        }
+        else {
+          wins++;
+        }
       }
 
-          // ties++;
-        // }
-
-
-      // else if (userChoice === "r"){
-        // if (randcompChoice === "r"){
-          // ties++;
-        // }
-        // else if (randcompChoice === "p"){
-          // losses++;
-        // }
-        // else {
-          // wins++;
-        // }
-      //}
+      else if (userChoice === "r"){
+        if (randcompChoice === "r"){
+          ties++;
+        }
+        else if (randcompChoice === "p"){
+          losses++;
+        }
+        else {
+          wins++;
+        }
+      }
 
       if (userChoice === "p"){
         if (randcompChoice === "p"){
@@ -102,13 +87,13 @@
 
       console.log("Wins: " + wins);
       console.log("Losses: " + losses);
-      console.log("guesses: " + guesses);
+      console.log("Ties: " + ties);
 
       DoccompChoice.innerHTML = randcompChoice;
       DocuserChoice.innerHTML = userChoice;
       Docwins.innerHTML = wins;
       Doclosses.innerHTML = losses;
-      Docguesses.innerHTML = guesses;
+      Docties.innerHTML = ties;
 
     };
 
