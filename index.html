@@ -20,6 +20,7 @@
     <p>Wins: <span  id = "wins"></span ></p> 
     <p>Losses: <span  id = "losses"></span > </p>
     <p>Guesses:  <span  id = "guesses"></span ></p>
+    <p>Previous Guesses:  <span  id = "lettersArray"></span ></p>
   </div>
 
   <script type="text/javascript">
@@ -29,64 +30,46 @@
     var Docwins = document.getElementById("wins");
     var Doclosses = document.getElementById("losses");
     var Docguesses = document.getElementById("guesses");
+    var DocAllguesses = document.getElementById("lettersArray");
 
 
-   // var ties = 0;
+
     var wins = 0;
     var losses = 0;
     var guesses = 9;
     var options = ["a", "b", "c"];
-    
+    var lettersArray =[];
 
 
     document.onkeyup = function(event) {
-      //alert(event.key);
       var randcompChoice = options[Math.floor(Math.random() * (options.length ))];
       var userChoice = event.key;
-
-      //if (options.indexOf(userChoice) === -1){
-      // alert("Pick a letter!");
-    // }
+      var input = event.key;
 
       console.log("Computer choice: " + randcompChoice);
       console.log("User choice: " + userChoice);
+      console.log(event.key);
+      console.log(lettersArray);
+
 
         if (userChoice === randcompChoice) {  
-            //ties++;
             wins++;
             guesses = 9
             alert("you won!");
           }
- //       if (randcompChoice === "r"){
-  //      losses++;
-        //}
+
         else if(guesses === 0){
 
-        //  wins++;
+
         losses++;
         guesses = 9;
         alert("you loose");
         }
-      // }
+
       else if (userChoice !== randcompChoice){
         guesses--
+        lettersArray.push(input);
       }
-
-          // ties++;
-        // }
-
-
-      // else if (userChoice === "r"){
-        // if (randcompChoice === "r"){
-          // ties++;
-        // }
-        // else if (randcompChoice === "p"){
-          // losses++;
-        // }
-        // else {
-          // wins++;
-        // }
-      //}
 
       if (userChoice === "p"){
         if (randcompChoice === "p"){
@@ -109,6 +92,7 @@
       Docwins.innerHTML = wins;
       Doclosses.innerHTML = losses;
       Docguesses.innerHTML = guesses;
+      DocAllguesses.innerHTML = lettersArray;
 
     };
 
