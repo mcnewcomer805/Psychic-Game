@@ -56,31 +56,40 @@
             wins++;
             guesses = 9
             alert("you won!");
+            lettersArray.push(input);
           }
 
         else if(guesses === 0){
-
-
-        losses++;
-        guesses = 9;
-        alert("you loose");
+          losses++;
+          guesses = 9;
+          alert("you loose");
+          lettersArray = [];
         }
 
       else if (userChoice !== randcompChoice){
-        guesses--
-        lettersArray.push(input);
+         guesses--
+         lettersArray.push(input);
+
       }
 
       if (userChoice === "p"){
         if (randcompChoice === "p"){
           ties++;
+          lettersArray = [];
         }
         else if (randcompChoice === "s"){
           losses++;
+          lettersArray = [];
         }
+
+        
+
+
         else {
           wins++;
+          lettersArray = [];
         }
+
       }
 
       console.log("Wins: " + wins);
@@ -94,7 +103,7 @@
       Docguesses.innerHTML = guesses;
       DocAllguesses.innerHTML = lettersArray;
 
-    };
+ };
 
 
   </script>
